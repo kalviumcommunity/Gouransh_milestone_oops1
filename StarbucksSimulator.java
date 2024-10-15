@@ -128,14 +128,17 @@ public class StarbucksSimulator {
             var3.getCart().addItem(var5[var8]);
          }
 
+         
          System.out.print("Do you want to checkout? (yes or no): ");
          var9 = var1.nextLine().toLowerCase();
       }
+
 
       System.out.println("Order for " + var3.getName() + ":");
       var3.getCart().displayCart();
       System.out.println("Total: $" + var3.getCart().getTotalPrice());
       var1.close();
+
    }
 }
    
