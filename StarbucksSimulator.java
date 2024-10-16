@@ -95,9 +95,9 @@ public class StarbucksSimulator {
       Scanner var1 = new Scanner(System.in);
       System.out.print("Enter your name: ");
       String var2 = var1.nextLine();
-      User var3 = new User(var2);
-      Coffee[] var4 = new Coffee[]{new Coffee("Espresso", 2.5), new Coffee("Latte", 3.5)};
-      Snack[] var5 = new Snack[]{new Snack("Croissant", 2.0), new Snack("Muffin", 1.75)};
+      User var3 =  new User(var2);
+      Coffee[] var4 = new Coffee[]{ new Coffee("Espresso", 2.5), new Coffee("Latte", 3.5), new Coffee("Cappuccino", 3.0), new Coffee("balck_Coffee", 2.75)};
+      Snack[] var5 = new Snack[]{ new Snack("Croissant", 2.0), new Snack("Muffin", 1.75)};
 
       String var9;
       for(boolean var6 = false; !var6; var6 = var9.equals("yes")) {
@@ -111,7 +111,7 @@ public class StarbucksSimulator {
                System.out.println(var8 + 1 + ". " + var4[var8].getName() + " - $" + var4[var8].getPrice());
             }
 
-            System.out.print("Enter the number of the coffee you want: ");
+            System.out.print("Enter the S.number of the coffee you want: ");
             var8 = var1.nextInt() - 1;
             var1.nextLine();
             var3.getCart().addItem(var4[var8]);
@@ -126,9 +126,12 @@ public class StarbucksSimulator {
             var8 = var1.nextInt() - 1;
             var1.nextLine();
             var3.getCart().addItem(var5[var8]);
+         } else{
+            System.out.println("Invalid input. Please try again.");  
          }
 
-         
+
+
          System.out.print("Do you want to checkout? (yes or no): ");
          var9 = var1.nextLine().toLowerCase();
       }
