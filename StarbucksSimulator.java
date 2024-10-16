@@ -7,12 +7,18 @@ import java.util.Scanner;
 class Inventory {
     protected String name;
     protected double price;
- 
+    public static int totalCoffeesOrdered = 0;
+    public static int totalSnacksOrdered = 0;
+
     public Inventory(String var1, double var2) {
        this.name = var1;
        this.price = var2;
-    }
- 
+      }
+      
+      public static void displayTotalOrders() {
+          System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
+          System.out.println("Total Snacks ordered: " + totalSnacksOrdered);
+      }
     public String getName() {
        return this.name;
     }
@@ -25,12 +31,14 @@ class Inventory {
 class Coffee extends Inventory {
     public Coffee(String var1, double var2) {
        super(var1, var2);
+      //  totalCoffeesOrdered++;
     }
  }
 // Source code is decompiled from a .class file using FernFlower decompiler.
 class Snack extends Inventory {
     public Snack(String var1, double var2) {
        super(var1, var2);
+      //  totalSnacksOrdered++;
     }
  }
 // Source code is decompiled from a .class file using FernFlower decompiler.
@@ -73,6 +81,8 @@ class Cart {
          var10000.println("- " + var10001 + ": $" + var2.getPrice());
       }
 
+      Inventory.displayTotalOrders();
+
    }
 
    public double getTotalPrice() {
@@ -105,6 +115,7 @@ public class StarbucksSimulator {
          String var7 = var1.nextLine().toLowerCase();
          int var8;
          if (var7.equals("coffee")) {
+            Inventory.totalCoffeesOrdered++;
             System.out.println("Coffee Menu:");
 
             for(var8 = 0; var8 < var4.length; ++var8) {
@@ -116,6 +127,7 @@ public class StarbucksSimulator {
             var1.nextLine();
             var3.getCart().addItem(var4[var8]);
          } else if (var7.equals("snacks")) {
+            Inventory.totalSnacksOrdered++;
             System.out.println("Snack Menu:");
 
             for(var8 = 0; var8 < var5.length; ++var8) {
@@ -139,7 +151,7 @@ public class StarbucksSimulator {
 
       System.out.println("Order for " + var3.getName() + ":");
       var3.getCart().displayCart();
-      System.out.println("Total: $" + var3.getCart().getTotalPrice());
+      System.out.println("Total price (without taxes): $" + var3.getCart().getTotalPrice());
       var1.close();
 
    }
