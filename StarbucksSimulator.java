@@ -7,12 +7,24 @@ import java.util.Scanner;
 class Inventory {
     protected String name;
     protected double price;
- 
+    public static int totalCoffeesOrdered = 0;
+    public static int totalSnacksOrdered = 0;
+
     public Inventory(String var1, double var2) {
        this.name = var1;
        this.price = var2;
-    }
- 
+      }
+   public  void setName(String name) {
+      this.name = name;
+      
+   }
+   public  void setPrice(double price) {
+      this.price = price;
+   }
+      public static void displayTotalOrders() {
+          System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
+          System.out.println("Total Snacks ordered: " + totalSnacksOrdered);
+      }
     public String getName() {
        return this.name;
     }
@@ -25,12 +37,14 @@ class Inventory {
 class Coffee extends Inventory {
     public Coffee(String var1, double var2) {
        super(var1, var2);
+      //  totalCoffeesOrdered++;
     }
  }
 // Source code is decompiled from a .class file using FernFlower decompiler.
 class Snack extends Inventory {
     public Snack(String var1, double var2) {
        super(var1, var2);
+      //  totalSnacksOrdered++;
     }
  }
 // Source code is decompiled from a .class file using FernFlower decompiler.
@@ -41,6 +55,9 @@ class User {
     public User(String var1) {
        this.name = var1;
        this.cart = new Cart();
+    }
+    public void setName(String var1) {
+       this.name = var1;
     }
  
     public String getName() {
@@ -73,6 +90,8 @@ class Cart {
          var10000.println("- " + var10001 + ": $" + var2.getPrice());
       }
 
+      Inventory.displayTotalOrders();
+
    }
 
    public double getTotalPrice() {
@@ -95,9 +114,9 @@ public class StarbucksSimulator {
       Scanner var1 = new Scanner(System.in);
       System.out.print("Enter your name: ");
       String var2 = var1.nextLine();
-      User var3 = new User(var2);
-      Coffee[] var4 = new Coffee[]{new Coffee("Espresso", 2.5), new Coffee("Latte", 3.5)};
-      Snack[] var5 = new Snack[]{new Snack("Croissant", 2.0), new Snack("Muffin", 1.75)};
+      User var3 =  new User(var2);
+      Coffee[] var4 = new Coffee[]{ new Coffee("Espresso", 2.5), new Coffee("Latte", 3.5), new Coffee("Cappuccino", 3.0), new Coffee("balck_Coffee", 2.75)};
+      Snack[] var5 = new Snack[]{ new Snack("Croissant", 2.0), new Snack("Muffin", 1.75)};
 
       String var9;
       for(boolean var6 = false; !var6; var6 = var9.equals("yes")) {
@@ -105,17 +124,19 @@ public class StarbucksSimulator {
          String var7 = var1.nextLine().toLowerCase();
          int var8;
          if (var7.equals("coffee")) {
+            Inventory.totalCoffeesOrdered++;
             System.out.println("Coffee Menu:");
 
             for(var8 = 0; var8 < var4.length; ++var8) {
                System.out.println(var8 + 1 + ". " + var4[var8].getName() + " - $" + var4[var8].getPrice());
             }
 
-            System.out.print("Enter the number of the coffee you want: ");
+            System.out.print("Enter the S.number of the coffee you want: ");
             var8 = var1.nextInt() - 1;
             var1.nextLine();
             var3.getCart().addItem(var4[var8]);
          } else if (var7.equals("snacks")) {
+            Inventory.totalSnacksOrdered++;
             System.out.println("Snack Menu:");
 
             for(var8 = 0; var8 < var5.length; ++var8) {
@@ -126,9 +147,12 @@ public class StarbucksSimulator {
             var8 = var1.nextInt() - 1;
             var1.nextLine();
             var3.getCart().addItem(var5[var8]);
+         } else{
+            System.out.println("Invalid input. Please try again.");  
          }
 
-         
+
+
          System.out.print("Do you want to checkout? (yes or no): ");
          var9 = var1.nextLine().toLowerCase();
       }
@@ -136,7 +160,7 @@ public class StarbucksSimulator {
 
       System.out.println("Order for " + var3.getName() + ":");
       var3.getCart().displayCart();
-      System.out.println("Total: $" + var3.getCart().getTotalPrice());
+      System.out.println("Total price (without taxes): $" + var3.getCart().getTotalPrice());
       var1.close();
 
    }
