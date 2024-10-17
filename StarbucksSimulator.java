@@ -14,7 +14,13 @@ class Inventory {
        this.name = var1;
        this.price = var2;
       }
+   public  void setName(String name) {
+      this.name = name;
       
+   }
+   public  void setPrice(double price) {
+      this.price = price;
+   }
       public static void displayTotalOrders() {
           System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
           System.out.println("Total Snacks ordered: " + totalSnacksOrdered);
@@ -49,6 +55,9 @@ class User {
     public User(String var1) {
        this.name = var1;
        this.cart = new Cart();
+    }
+    public void setName(String var1) {
+       this.name = var1;
     }
  
     public String getName() {
