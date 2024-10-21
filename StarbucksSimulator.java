@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class Inventory {
+abstract  class Inventory {
     protected String itemName;
     protected double itemPrice;
     public static int totalCoffeesOrdered = 0;
@@ -28,9 +28,9 @@ abstract class Inventory {
     }
 
     // Abstract method to force subclasses to implement
-    abstract String getCategory();
+    abstract  String getCategory();
 
-    public static void displayTotalOrders() {
+    public static  void displayTotalOrders() {
         System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
         System.out.println("Total Snacks ordered: " + totalSnacksOrdered);
     }
@@ -44,11 +44,11 @@ abstract class Inventory {
     }
 }
 
-interface Orderable {
+interface  Orderable {
    void placeOrder();
 }
 
-class Coffee extends Inventory implements Orderable {
+class Coffee  extends Inventory implements Orderable {
 
    public Coffee(String name, double price) {
        super(name, price);
@@ -60,11 +60,11 @@ class Coffee extends Inventory implements Orderable {
 
    public void placeOrder() {
        totalCoffeesOrdered++; // Increment the static counter
-       System.out.println("Order placed for coffee: " + itemName);
+       System.out.println("Order will be placed for coffee: " + itemName);
    }
 }
 
-class Snack extends Inventory implements Orderable {
+class Snack  extends Inventory implements Orderable {
 
    public Snack(String name, double price) {
        super(name, price);
@@ -111,15 +111,16 @@ class Cart {
       this.cartItems.add(item);
    }
 
-   public void displayCartItems() {
+   public  void displayCartItems() {
       System.out.println("Cart Items:");
       for (Inventory item : cartItems) {
          System.out.println("- " + item.getItemName() + ": $" + item.getItemPrice());
       }
+
       Inventory.displayTotalOrders();
    }
 
-   public double getTotalCartPrice() {
+   public  double getTotalCartPrice() {
       double total = 0.0;
       for (Inventory item : cartItems) {
          total += item.getItemPrice();
@@ -129,7 +130,7 @@ class Cart {
 }
 
 public class StarbucksSimulator {
-   public StarbucksSimulator() {}
+   // public StarbucksSimulator() {}
 
    public static void main(String[] args) {
       Scanner scanner = new Scanner(System.in);
@@ -157,7 +158,6 @@ public class StarbucksSimulator {
 
          int itemNumber;
          if (choice.equals("coffee")) {
-            Inventory.totalCoffeesOrdered++;
             System.out.println("Coffee Menu:");
             for (int i = 0; i < availableCoffees.length; ++i) {
                System.out.println((i + 1) + ". " + availableCoffees[i].getItemName() + " - $" + availableCoffees[i].getItemPrice());
@@ -167,6 +167,7 @@ public class StarbucksSimulator {
             itemNumber = scanner.nextInt() - 1;
             scanner.nextLine();  // Clear the newline character
             user.getUserCart().addItem(availableCoffees[itemNumber]);
+            availableCoffees[itemNumber].placeOrder();
          } else if (choice.equals("snacks")) {
             Inventory.totalSnacksOrdered++;
             System.out.println("Snack Menu:");
@@ -178,6 +179,7 @@ public class StarbucksSimulator {
             itemNumber = scanner.nextInt() - 1;
             scanner.nextLine();
             user.getUserCart().addItem(availableSnacks[itemNumber]);
+            availableSnacks[itemNumber].placeOrder();
          } else {
             System.out.println("Invalid input. Please try again.");
          }
