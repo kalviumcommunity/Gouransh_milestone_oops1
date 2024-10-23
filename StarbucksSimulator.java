@@ -10,6 +10,8 @@ abstract  class Inventory {
     public static int totalCoffeesOrdered = 0;
     public static int totalSnacksOrdered = 0;
 
+
+
     public Inventory(String name, double price) {
        this.itemName = name;
        this.itemPrice = price;
@@ -50,10 +52,12 @@ interface  Orderable {
 
 class Coffee  extends Inventory implements Orderable {
 
+   // Constructor
+
+   
    public Coffee(String name, double price) {
        super(name, price);
    }
-
    String getCategory() {
        return "Coffee";
    }
@@ -83,10 +87,18 @@ class Snack  extends Inventory implements Orderable {
 class User {
     private String userName;
     private Cart userCart;
+    private String email;
+   
+    public User(){
+      this.userName = "Guest";
+      this.userCart = new Cart();
+      this.email = "gouransh29@gmail.com";
 
+    }
     public User(String name) {
        this.userName = name;
        this.userCart = new Cart();
+
     }
 
     public void setUserName(String name) {
@@ -105,7 +117,9 @@ class User {
 class Cart {
    private List<Inventory> cartItems = new ArrayList<>();
 
-   public Cart() {}
+   public Cart() {
+      
+   }
 
    public void addItem(Inventory item) {
       this.cartItems.add(item);
