@@ -5,42 +5,33 @@ import java.util.List;
 import java.util.Scanner;
 
 abstract  class Inventory {
-    protected String itemName;
+   
+   protected String itemName;
     protected double itemPrice;
     public static int totalCoffeesOrdered = 0;
     public static int totalSnacksOrdered = 0;
-
-
-
     public Inventory(String name, double price) {
        this.itemName = name;
        this.itemPrice = price;
     }
-
     public void setItemName(String name) {
        this.itemName = name;
     }
-
     public void setItemPrice(double price) {
        this.itemPrice = price;
     }
-
     public void showDetails() {
        System.out.println("Item: " + itemName + ", Price: $" + itemPrice);
     }
-
     // Abstract method to force subclasses to implement
     abstract  String getCategory();
-
     public static  void displayTotalOrders() {
         System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
         System.out.println("Total Snacks ordered: " + totalSnacksOrdered);
     }
-
     public String getItemName() {
        return this.itemName;
     }
-
     public double getItemPrice() {
        return this.itemPrice;
     }
@@ -53,7 +44,6 @@ interface  Orderable {
 class Coffee  extends Inventory implements Orderable {
 
    // Constructor
-
    
    public Coffee(String name, double price) {
        super(name, price);
@@ -117,14 +107,11 @@ class User {
 class Cart {
    private List<Inventory> cartItems = new ArrayList<>();
 
-   public Cart() {
-      
+   public Cart() {   
    }
-
    public void addItem(Inventory item) {
       this.cartItems.add(item);
    }
-
    public  void displayCartItems() {
       System.out.println("Cart Items:");
       for (Inventory item : cartItems) {
@@ -133,7 +120,6 @@ class Cart {
 
       Inventory.displayTotalOrders();
    }
-
    public  double getTotalCartPrice() {
       double total = 0.0;
       for (Inventory item : cartItems) {
@@ -163,7 +149,6 @@ public class StarbucksSimulator {
          new Snack("Croissant", 2.0),
          new Snack("Muffin", 1.75)
       };
-
       String checkoutChoice;
       boolean finishedOrdering = false;
       while (!finishedOrdering) {
@@ -176,7 +161,6 @@ public class StarbucksSimulator {
             for (int i = 0; i < availableCoffees.length; ++i) {
                System.out.println((i + 1) + ". " + availableCoffees[i].getItemName() + " - $" + availableCoffees[i].getItemPrice());
             }
-
             System.out.print("Enter the S.number of the coffee you want: ");
             itemNumber = scanner.nextInt() - 1;
             scanner.nextLine();  // Clear the newline character
@@ -202,7 +186,6 @@ public class StarbucksSimulator {
          checkoutChoice = scanner.nextLine().toLowerCase();
          finishedOrdering = checkoutChoice.equals("yes");
       }
-
       System.out.println("Order for " + user.getUserName() + ":");
       user.getUserCart().displayCartItems();
       System.out.println("Total price (without taxes): $" + user.getUserCart().getTotalCartPrice());
