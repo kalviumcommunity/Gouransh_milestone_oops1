@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+//  inventory class is single responsibility principle so we will orchestrate total orders logic better way
 
 abstract  class Inventory {
    
