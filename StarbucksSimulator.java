@@ -23,7 +23,7 @@ abstract  class Inventory {
     public void showDetails() {
        System.out.println("Item: " + itemName + ", Price: $" + itemPrice);
     }
-    // Abstract method to force subclasses to implement
+    
     abstract  String getCategory();
     public static  void displayTotalOrders() {
         System.out.println("Total Coffees ordered: " + totalCoffeesOrdered);
@@ -43,7 +43,7 @@ interface  Orderable {
 
 class Coffee  extends Inventory implements Orderable {
 
-   // Constructor
+   
    
    public Coffee(String name, double price) {
        super(name, price);
@@ -53,7 +53,7 @@ class Coffee  extends Inventory implements Orderable {
    }
 
    public void placeOrder() {
-       totalCoffeesOrdered++; // Increment the static counter
+       totalCoffeesOrdered++; 
        System.out.println("Order will be placed for coffee: " + itemName);
    }
 }
@@ -69,7 +69,7 @@ class Snack  extends Inventory implements Orderable {
    }
 
    public void placeOrder() {
-       totalSnacksOrdered++; // Increment the static counter
+       totalSnacksOrdered++; 
        System.out.println("Order placed for snack: " + itemName);
    }
 }
@@ -163,7 +163,7 @@ public class StarbucksSimulator {
             }
             System.out.print("Enter the S.number of the coffee you want: ");
             itemNumber = scanner.nextInt() - 1;
-            scanner.nextLine();  // Clear the newline character
+            scanner.nextLine();  
             user.getUserCart().addItem(availableCoffees[itemNumber]);
             availableCoffees[itemNumber].placeOrder();
          } else if (choice.equals("snacks")) {
