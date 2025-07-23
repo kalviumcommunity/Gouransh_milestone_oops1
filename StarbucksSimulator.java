@@ -78,13 +78,10 @@ class Snack  extends Inventory implements Orderable {
 class User {
     private String userName;
     private Cart userCart;
-    private String email;
    
     public User(){
       this.userName = "Guest";
       this.userCart = new Cart();
-      this.email = "gouransh29@gmail.com";
-
     }
     public User(String name) {
        this.userName = name;
